@@ -1,9 +1,12 @@
-import csv
-from pathlib import Path
+#!/bin/env/python3
 
-directory = "/path/to/file"
-fileName = "target_file.csv"
-fileLoc = Path(directory).joinpath(fileName)
+import csv, os
+from pathlib import Path
+from tkinter.filedialog import askopenfilename 
+
+file = askopenfilename()
+filename, file_extension = os.path.splitext(file)
+file = open(file)
 
 headEnd = 46
 dataRows = []
@@ -19,7 +22,7 @@ def removeSet(data, Y1):
 	data = data[row_num:]
 	return result, data
 
-with fileLoc.open() as csvFileObj:
+with file as csvFileObj:
 	readerObj = csv.reader(csvFileObj)
 
 	# Take out all header rows
@@ -27,14 +30,14 @@ with fileLoc.open() as csvFileObj:
 		if readerObj.line_num < headEnd:
 			continue
 		row = row[0].strip().split(" ") # Split into list
-		# If the V value is positive it is separated by 2 spaces, leaving the data in list[2], this loop corrects that
+		# If the V value is positive it is separated by 2 spaces, leaving the data in list[2], this corrects that
 		if row[1] == '':
 			del row[1]
-		dataRows.append(row[:2]) # Append only A and V values to the list
+		dataRows.append(row[:2])
 
 # Write a cleaned file with all runs in one set
-bigOut = Path(directory).joinpath(fileLoc.stem + "_cleanBig.csv")
-with bigOut.open("w") as f:
+big_out = filename + "_cleanBig.csv"
+with open(big_out, "w") as f:
     f.write("A,V\n")
     for row in dataRows:
         f.write(row[0] + "," + row[1] + "\n")
@@ -59,8 +62,8 @@ for i in range(len(data_sets)):
 
 
 # Write a cleaned file with all runs separated
-outName = Path(directory).joinpath(fileLoc.stem + "_cleanSplit.csv")
-with outName.open("w") as f:
+split_out = filename + "_cleanSplit.csv"
+with open(split_out, "w") as f:
     # Write header row
     f.write("A,V")
     for i in range(1, len(data_sets)):
