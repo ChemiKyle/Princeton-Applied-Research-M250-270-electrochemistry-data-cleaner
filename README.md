@@ -4,4 +4,4 @@ It has a catchy and memorable name so exhausted 4th year grad students doomed to
 
 Outputs 2 files, one with the data cleaned and all run together (\<original_filename>\_cleanBig.csv) and one with the data separated into runs based on the starting value (\<original_filename>\_cleanSplit.csv). GUI works on Ubuntu, don't have consistent access to Windows to test it out..
 
-_Must be run with Python 3, requires Tkinter_
+_Must be run with Python 3, requires Tkinter._
