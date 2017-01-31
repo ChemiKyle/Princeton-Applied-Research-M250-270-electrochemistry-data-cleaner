@@ -1,7 +1,6 @@
 #!/bin/env/python3
 
 import csv, os
-from pathlib import Path
 from tkinter.filedialog import askopenfilename 
 
 file = askopenfilename()
