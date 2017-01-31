@@ -35,7 +35,7 @@ with file as csvFileObj:
 		dataRows.append(row[:2])
 
 # Write a cleaned file with all runs in one set
-big_out = filename + "_cleanBig.csv"
+big_out = filename + "_cleanBig" + file_extension
 with open(big_out, "w") as f:
     f.write("A,V\n")
     for row in dataRows:
@@ -61,7 +61,7 @@ for i in range(len(data_sets)):
 
 
 # Write a cleaned file with all runs separated
-split_out = filename + "_cleanSplit.csv"
+split_out = filename + "_cleanSplit" + file_extension
 with open(split_out, "w") as f:
     # Write header row
     f.write("A,V")
