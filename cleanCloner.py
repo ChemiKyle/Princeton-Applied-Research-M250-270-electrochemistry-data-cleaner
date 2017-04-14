@@ -1,7 +1,12 @@
-#!/bin/env/python3
+#!/usr/bin/env python3
 
 import csv, os
 from tkinter.filedialog import askopenfilenames
+
+__author__ = "Kyle Chesney"
+__license__ = "MIT"
+
+header_end = 46
 
 def get_file_info(file):
 	filename, file_extension = os.path.splitext(file)
@@ -10,8 +15,6 @@ def get_file_info(file):
 	file = open(file)
 	file_info = [file, filename, file_extension]
 	return file_info
-
-header_end = 46
 
 def fill_array(file_info):
 	with file_info[0] as file:
@@ -54,7 +57,7 @@ def run_parser(file_info, data_rows):
 	largest_data_set = 0
 	data_sets = []
 
-	# Create data sets by searching for initial_V in the data
+	# Create data sets by searching for initial_V in the data, find the largest data set
 	while(len(data_rows) > 0):
 		data_set, data_rows = removeSet(data_rows, initial_V)
 		data_sets.append(data_set)
