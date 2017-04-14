@@ -1,18 +1,17 @@
 #!/bin/env/python3
 
 import csv, os
-from tkinter.filedialog import askopenfilename
+from tkinter.filedialog import askopenfilenames
 
-def get_file():
-	file = askopenfilename()
+def get_file_info(file):
 	filename, file_extension = os.path.splitext(file)
+	if file_extension == '':
+		file_extension = '.csv'
 	file = open(file)
 	file_info = [file, filename, file_extension]
 	return file_info
 
-headEnd = 46
-
-# file_info = get_file()
+header_end = 46
 
 def fill_array(file_info):
 	with file_info[0] as file:
@@ -20,7 +19,7 @@ def fill_array(file_info):
 		readerObj = csv.reader(file)
 		# Take out all header rows
 		for row in readerObj:
-			if readerObj.line_num < headEnd:
+			if readerObj.line_num < header_end:
 				continue
 			row = row[0].strip().split(" ") # Split into list
 			# If the V value is positive it is separated by 2 spaces, leaving the data in list[2], this corrects that
@@ -30,8 +29,6 @@ def fill_array(file_info):
 
 	return data_rows
 
-# data_rows = fill_array(file_info)
-
 # Write a cleaned file with all runs in one set, i.e. as a 2*m matrix
 def big_writer(file_info, data_rows):
 	big_out = file_info[1] + "_cleanBig" + file_info[2]
@@ -39,8 +36,6 @@ def big_writer(file_info, data_rows):
 		f.write("A,V\n")
 		for row in data_rows:
 			f.write(row[0] + "," + row[1] + "\n")
-
-# big_writer(file_info, data_rows)
 
 def removeSet(data, initial_V):
 	result = []
@@ -88,14 +83,13 @@ def run_parser(file_info, data_rows):
 				f.write(",," + ",".join(data_sets[i][row_num]))
 			f.write("\n")
 
-# run_parser(data_rows)
-
-
 def main():
-	file_info = get_file()
-	data_rows = fill_array(file_info)
-	big_writer(file_info, data_rows)
-	run_parser(file_info, data_rows)
+	file_list = askopenfilenames()
+	for file in file_list:
+		file_info = get_file_info(file)
+		data_rows = fill_array(file_info)
+		big_writer(file_info, data_rows)
+		run_parser(file_info, data_rows)
 
 if __name__ == '__main__':
 	main()
