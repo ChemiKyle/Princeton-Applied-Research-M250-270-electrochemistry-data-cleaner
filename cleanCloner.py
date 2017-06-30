@@ -74,10 +74,10 @@ def run_parser(file_info, data_rows):
 	# Write a cleaned file with all runs separated
 	split_out = file_info[1] + "_cleanSplit" + file_info[2]
 	with open(split_out, "w") as f:
-		# Write header row
-		f.write("A,V")
-		for i in range(1, len(data_sets)):
-			f.write(",,A,V")
+		# Write header row, label scan numbers for workup with R
+		for i in range(0, len(data_sets)):
+			run = i+1
+			f.write("A_scan_{},V_scan_{},,".format(run, run))
 		f.write("\n")
 
 		for row_num in range(largest_data_set):
