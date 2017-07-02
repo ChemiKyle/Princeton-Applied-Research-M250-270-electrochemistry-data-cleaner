@@ -7,5 +7,5 @@ Supports processing multiple files at once (`ctrl`+`click` or `shift`+`click`).
 
 _Must be run with Python 3, requires Tkinter._
 
-There is also an R script to plot each scan as a different color so you can more easily visualize changes between scans.
+There is also an R script to plot each scan as a different color so you can more easily visualize changes between scans. Here is a sample output from the included ferrocene data.  
 ![Image from sample data](/images/fc_example.png?raw=true "Ferrocene with 10 scans")
