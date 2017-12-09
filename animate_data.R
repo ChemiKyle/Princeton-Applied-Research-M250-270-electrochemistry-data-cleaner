@@ -1,9 +1,11 @@
 fname = file.choose()
 echem <- read.csv(fname)
+title_name = tail(strsplit(fname, '/')[[1]], 1) # Get file name sans path
+
 
 x <- echem$V
 y <- echem$A
-y <- y*10**6
+y <- y * 10 ** 6
 z <- echem$Scan
 
 show_V = F # Show graph of voltage sweeping over time
@@ -29,4 +31,4 @@ saveGIF({
          main = paste("Cyclic Voltammogram of ", title_name)
          )
   }
-}, interval = 0.01, movie.name = paste(fname, ".gif"))
+}, interval = 0.01, movie.name = paste(title_name, ".gif"))
