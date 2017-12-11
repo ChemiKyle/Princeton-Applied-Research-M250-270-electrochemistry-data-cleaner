@@ -7,13 +7,13 @@ echem <- read.csv(fname)
 echem <- echem[colSums(!is.na(echem)) > 0] # get rid of the empty buffer columns
 title_name = tail(strsplit(fname, '/')[[1]], 1) # Get the file name without preceding path to use as title
 
+# Split off data from each scan and plot in a different color
+pairs = length(echem)/2
+color_list = viridisLite::plasma(pairs)
+
 scan <- data.frame(echem[2], echem[1])
 line_width = 2
 plot(scan, type='l', lwd = line_width, xlab = 'V', ylab='A', col='red') # Initialize plot with first scan
-
-# Split off data from each scan and plot in a different color
-pairs = length(echem)/2
-color_list = rainbow(pairs) # Not sure if colorblind friendly :(
 
 for (i in 1:pairs) {
   scan <- data.frame(echem[i*2], echem[i*2-1])
