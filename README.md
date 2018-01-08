@@ -8,9 +8,9 @@ Supports processing multiple files at once (`ctrl`+`click` or `shift`+`click`).
 _Must be run with Python 3, requires Tkinter._
 
 There are also R scripts to:  
-1. Plot each scan as a different color so you can more easily visualize changes between scans. [base R, no dependencies]  
+1. Plot each scan as a different color so you can more easily visualize changes between scans. (Base R)  
 ![Image from sample data](/extra/fc_example.png?raw=true "Ferrocene with 10 scans")  
 2. Show the plotting over time, which may be useful for teaching CV (includes option to plot voltage sweeping).  
-⋅⋅* Dependencies: [animation](https://github.com/yihui/animation), [ggplot2](http://ggplot2.org/), [cowplot](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) (optional)  
+   - Dependencies: [animation](https://github.com/yihui/animation), [ggplot2](http://ggplot2.org/), [cowplot](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) (optional)  
 ![GIF from sample data](/extra/ggplot_fc_animated.gif?raw=true "1 scan of Ferrocene animated, Solarized 2 theme")
 ![Voltage sweep](/extra/v_sweep_fc_animated.gif?raw=true "1 scan of Ferrocene with voltage sweep")
